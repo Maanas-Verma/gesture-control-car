@@ -1,0 +1,78 @@
+
+int xPin=A0;
+int yPin=A1;
+
+int out1=8;     //output1 for HT12E IC
+int out2=9;     //output1 for HT12E IC
+int out3=10;    //output1 for HT12E IC
+int out4=11;    //output1 for HT12E IC*/
+String o;
+
+int x,y;
+void setup(){
+  pinMode(xPin,INPUT);
+  pinMode(yPin,INPUT);
+  pinMode(out1,OUTPUT);
+  pinMode(out2,OUTPUT);
+  pinMode(out3,OUTPUT);
+  pinMode(out4,OUTPUT);
+  Serial.begin(19200);
+}
+
+
+void loop() 
+{
+  int xval=analogRead(xPin);
+  int yval=analogRead(yPin);
+
+ if ((xval>320 && xval<340) && (yval>320 && yval<340)) //stop
+  {
+    digitalWrite(out1,LOW);  
+    digitalWrite(out2,LOW);   
+    digitalWrite(out3,LOW);   
+    digitalWrite(out4,LOW);
+    o="stop";
+  } 
+
+  else 
+  { 
+    if ((xval>260 && xval<320) && (yval>320 && yval<340)) //BACKWORD
+   {
+     x=(330-xval)*225/70;
+     digitalWrite(out1,LOW);  
+     digitalWrite(out2,HIGH);   
+     digitalWrite(out3,LOW);  
+     digitalWrite(out4,HIGH);
+     o="backword"; 
+    }
+    if ((xval>340 && xval<400) && (yval>320 && yval<340)) //FORWORD
+  {
+   digitalWrite(out1,HIGH);   
+   digitalWrite(out2,LOW);  
+   digitalWrite(out3,HIGH);   
+   digitalWrite(out4,LOW);
+      o="forword";
+    }   
+
+    if ((xval>320 && xval<340) && (yval>260 && yval<320)) //left
+    {
+      
+      digitalWrite(out1,HIGH);  
+      digitalWrite(out2,LOW);   
+      digitalWrite(out3,LOW);   
+      digitalWrite(out4,HIGH);
+      o="left";
+     }
+
+
+    if ((xval>320 && xval<340) && (yval>340 && yval<400))//right
+    {
+      digitalWrite(out1,LOW);  
+      digitalWrite(out2,HIGH);   
+      digitalWrite(out3,HIGH);   
+      digitalWrite(out4,LOW);
+      o="right";
+    }
+  }
+  Serial.println(o);
+}
