@@ -1,12 +1,12 @@
 
-int xPin=A0;
-int yPin=A1;
+int xPin=A0;  //for x_val of adxl335
+int yPin=A1;  //fro y_val of adxl335
 
-int out1=8;     //output1 for HT12E IC
-int out2=9;     //output1 for HT12E IC
-int out3=10;    //output1 for HT12E IC
-int out4=11;    //output1 for HT12E IC*/
-String o;
+int out1=8;     //in1 for mptordriver
+int out2=9;     //in2 for motordriver
+int out3=10;    //in3 for motordriver
+int out4=11;    //in4 for motordriver
+String o;  //for checking the value in sereal and calibration
 
 int x,y;
 void setup(){
@@ -74,5 +74,5 @@ void loop()
       o="right";
     }
   }
-  Serial.println(o);
+  Serial.println(o);// print value of 'o' in serial
 }
