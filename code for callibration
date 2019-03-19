@@ -1,0 +1,15 @@
+int x=A0;
+int y=A1;
+void setup(){
+  pinMode(x,INPUT);
+  pinMode(y,INPUT);
+  Serial.begin(19200);
+}
+
+void loop(){
+  int xval=analogRead(x);
+  int yval=analogRead(y);
+  Serial.print(xval);
+  Serial.print('  ');
+  Serial.println(yval);
+}
